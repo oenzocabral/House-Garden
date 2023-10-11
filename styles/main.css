@@ -1,0 +1,7 @@
+/* Add this line to change the font family to Clear Sans */
+body {
+    font-family: "Clear Sans", sans-serif;
+    background-color: rgb(11, 48, 7);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }

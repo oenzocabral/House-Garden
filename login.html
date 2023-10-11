@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./imgs/icon.ico">
+    <link rel="stylesheet" href="styles/criar-conta.css">
+    <title>Crie sua conta</title>
+  </head>
+  <body>
+    <form method="POST" action="{% url 'register' %}">
+        <div>
+            <img class="logo-image" src="./imgs/house-garden-no-background.png" alt="Logo">
+            <p class="title">Entre em Sua Conta</p>
+        </div>
+        <input type="text" placeholder="Telefone">
+        <input type="password" placeholder="Senha">
+        <input type="submit" value="Get Started">
+        <a href="./criar-conta.html" class="create-account-link">Não tem conta? Clique aqui</a>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        /* Add this line to change the font family to Clear Sans */
+body {
+  font-family: "Clear Sans", sans-serif;
+  background-color: rgb(11, 48, 7);
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+h2 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.map {
+  width: 85vw; /* Default width for mobile devices */
+  height: 75vw; /* Default height for mobile devices */
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto; /* Center the map horizontally */ 
+  margin-bottom: 10px;
+}
+/* Media query for desktop screens */
+@media (min-width: 768px) {
+  .map {
+    width: 70vh;
+    height: 50vh; 
+  }
+}
+
+.task-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 450px;
+            width: 85vw;
+            margin: 0 auto;
+            margin-bottom: 8px;
+        }
+
+        #task-input {
+            display: flex;
+            max-width: 450px;
+            width: 85vw;
+            margin-top: 10px;
+            margin: 0 auto;
+        }
+
+        #new-task {
+            flex: 1;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            padding: 5px;
+        }
+
+        #new-task:focus {
+            outline: none;
+        }
+
+        .submit-button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            background-color: rgb(40, 140, 42);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: white;
+            align-items: center;
+            text-align: center;
+            padding: 2px;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .lista-horta {
+            list-style: none;
+        }
+
+        .horta-item {
+            padding: 5px;
+            border-radius: 8px;
+            color: black;
+            background-color: white;
+            max-width: 450px;
+            width: 85vw;
+            text-align: left;
+            list-style: none;
+            margin: 6px auto;
+        }
+
+    </style>
+    <title>House Garden</title>
+</head>
+<body>
+    <h2>
+        Encontre Jardineiros Próximos
+    </h2>
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4151005349854!2d-34.855805325716226!3d-7.955983192068552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab3da3c0000001%3A0x2f5ecc09a2412310!2sSchool%20Writer%20Paulo%20Cavalcante!5e0!3m2!1sen!2sbr!4v1697030224773!5m2!1sen!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    <div>
+        <h2>
+            Veja as Hortas que Você já Visitou
+        </h2>
+        <div class="lista-hortas">
+            <p class="horta-item">
+                <span class="endereco">Av. Tiradentes</span> - <span>Tomates</span>
+            </p>
+            <p class="horta-item">
+                <span class="endereco">Rua Trinta e Oito</span> - <span>Uvas e Hortelã</span>
+            </p>
+            <p class="horta-item">
+                <span class="endereco">Rua Vinte e Três</span> - <span>Morango</span>
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <h2>A Fazeres da Horta</h2>
+        <div id="todo-list">
+            <!-- Tarefas serão adicionadas aqui -->
+        </div>
+
+        <div id="task-input">
+            <input type="text" id="new-task" placeholder="Adicionar nova tarefa">
+            <buttonc class="submit-button" onclick="addTask()">Adicionar</button>
+        </div>
+
+        <script>
+            function addTask() {
+            const taskText = document.getElementById("new-task").value;
+
+            if (taskText.trim() !== "") {
+                const taskItem = document.createElement("div");
+                taskItem.classList.add("task-item");
+
+                const doneButton = document.createElement("span");
+                doneButton.innerHTML = '<img src="./imgs/done.svg" alt="Check">';
+                doneButton.addEventListener("click", function () {
+                    taskItem.style.textDecoration = "line-through";
+                    doneButton.disabled = true;
+                });
+
+                const taskDescription = document.createElement("span");
+                taskDescription.textContent = taskText;
+
+                const deleteButton = document.createElement("span");
+                deleteButton.innerHTML = '<img src="./imgs/trash.svg" alt="Delete">';
+                deleteButton.addEventListener("click", function () {
+                    taskItem.remove();
+                });
+
+                taskItem.appendChild(doneButton);
+                taskItem.appendChild(taskDescription);
+                taskItem.appendChild(deleteButton);
+
+                document.getElementById("todo-list").appendChild(taskItem);
+                document.getElementById("new-task").value = "";
+            }
+        }
+        </script>
+    </div>
+</body>
+</html>
